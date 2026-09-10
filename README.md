@@ -1,8 +1,10 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="assets/hero.png">
-    <img src="assets/hero-animated.svg" alt="Brian Hovborg — practical tools for connected homes" width="100%">
-  </picture>
+  <a href="https://foto.hovborg.tech/auth/login?autoLaunch=0" title="Open the interactive Hovborg logo">
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="assets/hero.png">
+      <img src="assets/hero-logo.gif" alt="Brian Hovborg — practical tools for connected homes" width="100%">
+    </picture>
+  </a>
 </p>
 
 <p align="center">
