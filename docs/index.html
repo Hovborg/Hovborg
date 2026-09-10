@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="darkreader-lock">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brian Hovborg · The Workshop</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: #0b1017; }
+  body { display: grid; place-content: center; min-height: 100vh; font: 14px/1.6 system-ui,sans-serif; color: #bac8d4; padding: 24px; }
+  .frame { width: min(1280px, calc(100vw - 48px)); aspect-ratio: 1280 / 460; position: relative; }
+  #banner { width: 1280px; height: 460px; position: absolute; transform: scale(var(--scale,1)); transform-origin: top left; overflow: hidden; border-radius: 20px; }
+  #banner > svg { position: absolute; inset: 0; }
+  .logo-area { position: absolute; left: 0; top: 0; width: 432px; height: 460px; overflow: hidden; }
+  hovborg-logo { position: absolute; left: -114px; top: -116px; width: 660px; --hovborg-size: 660px; }
+  .controls { display: flex; justify-content: center; gap: 20px; align-items: center; margin: 18px 0 0; flex-wrap: wrap; }
+  .controls label { display: flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; }
+  input { accent-color: #edc26d; }
+  a { color: #edc26d; }
+  body.export { display: block; padding: 0; min-height: 0; }
+  .export .frame { width: 1280px; }
+  .export .controls { display: none; }
+  .export * { cursor: none !important; }
+  body.paused #banner *, body.paused #banner *::before, body.paused #banner *::after { animation-play-state: paused !important; }
+  @media (prefers-reduced-motion: reduce) { #banner *, #banner *::before, #banner *::after { animation: none !important; } }
+</style>
+<main>
+  <div class="frame">
+    <div id="banner" role="img" aria-label="Brian Hovborg — practical tools for connected homes. Home Assistant, automation and developer tools.">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="460" viewBox="0 0 1280 460" role="img" aria-labelledby="title desc">
+<title id="title">Brian Hovborg — practical tools for connected homes</title>
+<desc id="desc">Practical tools for connected homes.</desc>
+<defs>
+  <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07121e"/><stop offset="1" stop-color="#101d2b"/></linearGradient>
+  <linearGradient id="gold"><stop stop-color="#8e6c37"/><stop offset=".5" stop-color="#f7d580"/><stop offset="1" stop-color="#70552c"/></linearGradient>
+  <radialGradient id="halo"><stop stop-color="#edb849" stop-opacity=".16"/><stop offset="1" stop-color="#edb849" stop-opacity="0"/></radialGradient>
+  <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="#64859b" opacity=".15"/></pattern>
+</defs>
+<style>
+  text{font-family:Inter,Segoe UI,Arial,sans-serif}
+  .orbit{transform-origin:216px 204px;animation:orbit 16s linear infinite}
+  .signal{stroke-dasharray:6 320;animation:signal 8s linear infinite}
+  .breathe{animation:breathe 7s ease-in-out infinite}
+  @keyframes orbit{to{transform:rotate(360deg)}}
+  @keyframes signal{to{stroke-dashoffset:-652}}
+  @keyframes breathe{50%{opacity:.45}}
+  @media(prefers-reduced-motion:reduce){.orbit,.signal,.breathe{animation:none}}
+</style>
+<rect width="1280" height="460" rx="20" fill="url(#bg)"/>
+<rect width="1280" height="460" rx="20" fill="url(#dots)"/>
+<rect x="15" y="15" width="1250" height="430" rx="12" stroke="#c29749" stroke-opacity=".28" fill="none"/>
+<path d="M40 64V40h24M1216 40h24v24M40 396v24h24M1216 420h24v-24" fill="none" stroke="#e9bd67" stroke-width="2"/>
+<text x="64" y="50" font-size="11" fill="#b59768" letter-spacing="3">HOVBORG / THE WORKSHOP</text>
+<text x="1207" y="50" text-anchor="end" font-size="11" fill="#8ea7ba" letter-spacing="3">BUILT TO BE USEFUL</text>
+<path d="M432 86v286" stroke="#587187" stroke-opacity=".32"/>
+<text x="482" y="113" fill="#50d8e5" font-size="13" letter-spacing="5">HOME LAB → OPEN SOURCE</text>
+<text x="476" y="207" fill="#f5f3ee" font-size="76" font-weight="750" letter-spacing="-3">Brian Hovborg</text>
+<text x="480" y="253" fill="#c0ceda" font-size="26">Practical tools for connected homes.</text>
+<g fill="#102c3a" stroke="#2f5263"><rect x="482" y="292" width="177" height="35" rx="17.5"/><rect x="671" y="292" width="146" height="35" rx="17.5"/><rect x="829" y="292" width="190" height="35" rx="17.5"/></g>
+<g fill="#a9dce3" font-size="12" letter-spacing="1.4" text-anchor="middle"><text x="570" y="314">HOME ASSISTANT</text><text x="744" y="314">AUTOMATION</text><text x="924" y="314">DEVELOPER TOOLS</text></g>
+<path d="M482 363h254l30 22h224l30-22h170" fill="none" stroke="#2d697b" stroke-width="1.3"/>
+<path class="signal" d="M482 363h254l30 22h224l30-22h170" fill="none" stroke="#61e0ee" stroke-width="2.8"/>
+<circle cx="482" cy="363" r="3" fill="#edc26d"/><circle cx="1190" cy="363" r="3" fill="#65d6e2"/>
+<text x="64" y="411" font-size="12" fill="#9caab7" letter-spacing="2">BUILD. UNDERSTAND. IMPROVE.</text>
+<text x="1206" y="411" text-anchor="end" font-size="12" fill="#d4b67e" letter-spacing="2">HOVBORG.TECH</text>
+</svg>
+      <div class="logo-area"><hovborg-logo no-controls></hovborg-logo></div>
+    </div>
+  </div>
+  <div class="controls">
+    <span>Move the pointer around the logo.</span>
+    <label><input id="pause" type="checkbox">Pause animation</label>
+    <a href="https://github.com/Hovborg">GitHub profile</a>
+  </div>
+</main>
+<script src="hovborg-logo.js"></script>
+<script>
+  const exporting = new URLSearchParams(location.search).has('export');
+  if (exporting) document.body.classList.add('export');
+  const frame = document.querySelector('.frame');
+  new ResizeObserver(([entry]) => frame.style.setProperty('--scale', entry.contentRect.width / 1280)).observe(frame);
+  const logo = document.querySelector('hovborg-logo');
+  const pause = document.querySelector('#pause');
+  pause.addEventListener('change', () => {
+    logo.toggleAttribute('paused', pause.checked);
+    document.body.classList.toggle('paused', pause.checked);
+  });
+  window.bannerReady = customElements.whenDefined('hovborg-logo').then(async () => {
+    const shadow = logo.shadowRoot;
+    const style = document.createElement('style');
+    style.textContent = `
+      .hv-mark { animation: none; }
+      .hv-sub { display: none; }
+      .hv-lens, .hv-glow { width: 256px; }
+      .hv-zones { width: 306px; }
+      .hv-logo { animation: hv-hover 8s ease-in-out infinite; }
+      .hv-mark::before { animation: hv-halo 8s ease-in-out infinite; }
+      .hv-halation { animation: hv-halation 8s ease-in-out infinite; }
+      .hv-mark::after { animation: hv-gleam 8s ease-in-out infinite; }
+      .hv-iris { animation: hv-iris 8s linear infinite; opacity: .55; }
+      .hv-flare { animation: hv-flare 8s ease-in-out infinite; }
+    `;
+    shadow.append(style);
+    await shadow.querySelector('img').decode();
+    await document.fonts.ready;
+    if (exporting) {
+      const fixed = document.createElement('style');
+      fixed.textContent = '.hv-glow{opacity:1!important}.hv-lens{opacity:.6!important}*{transition:none!important}';
+      shadow.append(fixed);
+    }
+    window.renderFrame = async seconds => {
+      const animations = new Set([...document.getAnimations(), ...shadow.querySelector('.stage').getAnimations({subtree:true})]);
+      for (const animation of animations) { animation.pause(); animation.currentTime = seconds * 1000; }
+      if (exporting) {
+        const angle = seconds / 8 * Math.PI * 2 - Math.PI / 2;
+        const glow = shadow.querySelector('.hv-glow');
+        glow.style.setProperty('--gx', `${50 + 48 * Math.cos(angle)}%`);
+        glow.style.setProperty('--gy', `${50 + 48 * Math.sin(angle)}%`);
+        shadow.querySelector('.hv-logo').style.transform = `perspective(900px) rotateX(${-3 * Math.sin(angle)}deg) rotateY(${3 * Math.cos(angle)}deg)`;
+      }
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    };
+  });
+</script>
+</html>
