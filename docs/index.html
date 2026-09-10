@@ -69,7 +69,7 @@
     </div>
   </div>
   <div class="controls">
-    <span>Move the pointer around the logo.</span>
+    <span>Move the pointer anywhere on the page.</span>
     <label><input id="pause" type="checkbox">Pause animation</label>
     <a href="https://github.com/Hovborg">GitHub profile</a>
   </div>
@@ -100,10 +100,63 @@
       .hv-mark::after { animation: hv-gleam 8s ease-in-out infinite; }
       .hv-iris { animation: hv-iris 8s linear infinite; opacity: .55; }
       .hv-flare { animation: hv-flare 8s ease-in-out infinite; }
+      :host([page-pointer]) .hv-zones { display: none; }
+      :host([pointer-active]) .hv-lens { opacity: .75; }
+      :host([pointer-active]) .hv-glow { opacity: 1; --gx: inherit; --gy: inherit; }
+      :host([pointer-active]) .hv-logo {
+        transform: perspective(900px) translate3d(var(--mx, 0px), var(--my, 0px), 0)
+          rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+      }
     `;
     shadow.append(style);
     await shadow.querySelector('img').decode();
     await document.fonts.ready;
+    if (!exporting) {
+      const mark = shadow.querySelector('.hv-mark');
+      const ring = shadow.querySelector('.hv-lens');
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      let pointer = null;
+      let pendingFrame = 0;
+      logo.setAttribute('page-pointer', '');
+
+      const resetPointer = () => {
+        if (pendingFrame) cancelAnimationFrame(pendingFrame);
+        pendingFrame = 0;
+        pointer = null;
+        logo.removeAttribute('pointer-active');
+        for (const property of ['--gx', '--gy', '--rx', '--ry', '--mx', '--my']) {
+          mark.style.removeProperty(property);
+        }
+      };
+      const updatePointer = () => {
+        pendingFrame = 0;
+        if (!pointer || reducedMotion.matches || logo.hasAttribute('paused')) return;
+        const bounds = ring.getBoundingClientRect();
+        const angle = Math.atan2(pointer.y - bounds.y - bounds.height / 2,
+          pointer.x - bounds.x - bounds.width / 2);
+        const x = Math.max(-1, Math.min(1, pointer.x / innerWidth * 2 - 1));
+        const y = Math.max(-1, Math.min(1, pointer.y / innerHeight * 2 - 1));
+        mark.style.setProperty('--gx', `${50 + 48 * Math.cos(angle)}%`);
+        mark.style.setProperty('--gy', `${50 + 48 * Math.sin(angle)}%`);
+        mark.style.setProperty('--rx', `${-y * 8}deg`);
+        mark.style.setProperty('--ry', `${x * 8}deg`);
+        mark.style.setProperty('--mx', `${x * 8}px`);
+        mark.style.setProperty('--my', `${y * 8}px`);
+        logo.setAttribute('pointer-active', '');
+      };
+      document.addEventListener('pointermove', event => {
+        if (event.pointerType !== 'mouse' || reducedMotion.matches || logo.hasAttribute('paused')) {
+          resetPointer();
+          return;
+        }
+        pointer = {x: event.clientX, y: event.clientY};
+        if (!pendingFrame) pendingFrame = requestAnimationFrame(updatePointer);
+      }, {passive: true});
+      document.documentElement.addEventListener('pointerleave', resetPointer);
+      window.addEventListener('blur', resetPointer);
+      reducedMotion.addEventListener('change', resetPointer);
+      pause.addEventListener('change', resetPointer);
+    }
     if (exporting) {
       const fixed = document.createElement('style');
       fixed.textContent = '.hv-glow{opacity:1!important}.hv-lens{opacity:.6!important}*{transition:none!important}';
