@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">From home signals to useful tools</title>
+  <desc id="desc">Sensors and devices on the left feed Home Assistant automation logic in the center. The processed signals continue to analyzers, dashboards and integrations on the right.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#07121e"/><stop offset="1" stop-color="#0e2131"/></linearGradient>
+    <linearGradient id="wire" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#42d9ef"/><stop offset=".55" stop-color="#efba56"/><stop offset="1" stop-color="#42d9ef"/></linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#42d9ef" opacity=".12"/></pattern>
+  </defs>
+  <style>
+    .flow { animation: flow 7s linear infinite; }
+    .flow-late { animation-delay: -3.5s; }
+    .pulse { animation: pulse 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .pulse-late { animation-delay: -1.6s; }
+    @keyframes flow { to { stroke-dashoffset: -132; } }
+    @keyframes pulse { 0%,100% { opacity:.62; transform:scale(.9); } 50% { opacity:1; transform:scale(1.13); } }
+    @media (prefers-reduced-motion: reduce) { .flow,.pulse { animation:none !important; } }
+  </style>
+
+  <rect x="1" y="1" width="1198" height="358" rx="26" fill="url(#bg)" stroke="#1c3b4e" stroke-width="2"/>
+  <rect x="1" y="1" width="1198" height="358" rx="26" fill="url(#dots)"/>
+  <text x="600" y="53" fill="#f4fbfc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="30" font-weight="750" text-anchor="middle">Signals become useful when the path is clear.</text>
+  <text x="600" y="82" fill="#8fb2c1" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" text-anchor="middle" letter-spacing="1.1">THE CONNECTED-HOME WORKSHOP</text>
+
+  <!-- Static rails under the animated signal dashes -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M249 161h96l31 28h102" stroke="#315366" stroke-width="5"/>
+    <path d="M249 241h97l30-28h102" stroke="#315366" stroke-width="5"/>
+    <path d="M720 189h100l31-28h99" stroke="#315366" stroke-width="5"/>
+    <path d="M720 213h100l31 28h99" stroke="#315366" stroke-width="5"/>
+    <path class="flow" d="M249 161h96l31 28h102" stroke="#42d9ef" stroke-width="5" stroke-dasharray="13 20"/>
+    <path class="flow flow-late" d="M249 241h97l30-28h102" stroke="#efba56" stroke-width="5" stroke-dasharray="13 20"/>
+    <path class="flow flow-late" d="M720 189h100l31-28h99" stroke="#efba56" stroke-width="5" stroke-dasharray="13 20"/>
+    <path class="flow" d="M720 213h100l31 28h99" stroke="#42d9ef" stroke-width="5" stroke-dasharray="13 20"/>
+  </g>
+
+  <!-- Sensors and devices -->
+  <g transform="translate(63 111)">
+    <rect width="190" height="175" rx="22" fill="#0b1b29" stroke="#27495c" stroke-width="2"/>
+    <text x="95" y="151" fill="#9cc0cd" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" letter-spacing="1.6">SENSORS + DEVICES</text>
+    <g fill="none" stroke="#42d9ef" stroke-width="4" stroke-linecap="round">
+      <circle class="pulse" cx="46" cy="61" r="9" fill="#42d9ef" stroke="none" filter="url(#glow)"/>
+      <path d="M29 44a24 24 0 010 34M20 35a37 37 0 010 52"/>
+      <rect x="82" y="32" width="44" height="58" rx="10"/>
+      <path d="M95 62h18"/>
+      <path d="M153 39v34a17 17 0 1034 0V39a17 17 0 00-34 0z"/>
+      <path d="M170 54v30" stroke="#efba56"/>
+    </g>
+  </g>
+
+  <!-- Automation core -->
+  <g transform="translate(478 111)">
+    <rect width="242" height="175" rx="26" fill="#0a1c29" stroke="url(#wire)" stroke-width="3"/>
+    <circle class="pulse pulse-late" cx="121" cy="70" r="44" fill="#42d9ef" opacity=".08" filter="url(#glow)"/>
+    <path d="M78 73l43-36 43 36v50H78z" fill="#0e2b3a" stroke="#d8f7fb" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M103 123V88h36v35M90 67v-17h19v2" fill="none" stroke="#d8f7fb" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="121" cy="74" r="8" fill="#efba56" filter="url(#glow)"/>
+    <text x="121" y="151" fill="#f4fbfc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="750" text-anchor="middle" letter-spacing="1.4">AUTOMATION LOGIC</text>
+  </g>
+
+  <!-- Useful outputs -->
+  <g transform="translate(950 111)">
+    <rect width="190" height="175" rx="22" fill="#0b1b29" stroke="#27495c" stroke-width="2"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="22" y="31" width="45" height="62" rx="7" stroke="#efba56" stroke-width="4"/>
+      <path d="M32 49h25M32 63h18M32 77h23" stroke="#efba56" stroke-width="3"/>
+      <rect x="78" y="32" width="91" height="59" rx="8" stroke="#42d9ef" stroke-width="4"/>
+      <path d="M91 72l18-17 15 9 28-22" stroke="#42d9ef" stroke-width="4"/>
+      <circle class="pulse" cx="109" cy="55" r="5" fill="#42d9ef" stroke="none" filter="url(#glow)"/>
+    </g>
+    <text x="95" y="125" fill="#f4fbfc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="750" text-anchor="middle">Reports · tools</text>
+    <text x="95" y="150" fill="#9cc0cd" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="650" text-anchor="middle">Dashboards · bridges</text>
+  </g>
+
+  <text x="600" y="326" fill="#efba56" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="650" text-anchor="middle">observe → understand → automate → verify</text>
+</svg>
