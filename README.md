@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://foto.hovborg.tech/auth/login?autoLaunch=0" title="Open the interactive Hovborg logo">
+  <a href="https://hovborg.github.io/Hovborg/" title="Open the interactive Hovborg logo">
     <picture>
       <source media="(prefers-reduced-motion: reduce)" srcset="assets/hero.png">
       <img src="assets/hero-logo.gif" alt="Brian Hovborg — practical tools for connected homes" width="100%">
